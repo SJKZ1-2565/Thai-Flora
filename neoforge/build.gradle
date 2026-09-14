@@ -1,0 +1,111 @@
+architectury {
+    platformSetupLoomIde()
+    neoForge()
+}
+
+configurations {
+
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    shadowCommon {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    apiElements {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+    runtimeElements {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+}
+
+repositories {
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
+    maven { url "https://maven.shedaniel.me/" }
+}
+
+dependencies {
+    neoForge "net.neoforged:neoforge:$neoforge_version"
+    api "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
+    common(project(path: ":common")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand version: project.version
+    }
+}
+
+
+String fileName = "thai flora-${project.version}"
+
+sourcesJar {
+    Jar commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+jar {
+    archiveClassifier = "raw"
+}
+
+shadowJar {
+    dependsOn(jar)
+    mainSpec.sourcePaths.clear()
+    from(zipTree(jar.archiveFile))
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier = "neoforge"
+    from rootProject.file("LICENSE.md")
+    archiveVersion = "v${mod_version}"
+    archiveBaseName = fileName
+}
+
+curseforge {
+    apiKey = project.hasProperty("curseforge_api_token") ? curseforge_api_token : ""
+    project {
+        id = "684957"
+        changelog = rootProject.file("CHANGE_LOG.md").text
+        changelogType = "markdown"
+        releaseType = "release"
+        addGameVersion "NeoForge"
+        addGameVersion minecraft_version
+        mainArtifact shadowJar.archiveFile
+        afterEvaluate {
+            uploadTask.dependsOn(shadowJar)
+        }
+    }
+    options {
+        forgeGradleIntegration = false
+    }
+}
+
+modrinth {
+    token = project.hasProperty("modrinth_api_token") ? modrinth_api_token : ""
+    projectId = "zaElPFa3"
+    versionName = "Thai Flora ${rootProject.mod_version} ${minecraft_version} NeoForge"
+    versionNumber = "thai-flora-" + rootProject.mod_version
+    uploadFile = shadowJar
+    changelog = rootProject.file("CHANGE_LOG.md").text
+    gameVersions = ["${minecraft_version}"]
+    loaders = ["neoforge"]
+    dependencies {
+        optional.project "cloth-config"
+        required.project "architectury-api"
+    }
+}

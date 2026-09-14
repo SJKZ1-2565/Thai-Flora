@@ -1,0 +1,30 @@
+architectury {
+    common enabled_platforms.split(',')
+}
+
+ext {
+    fileName = "${archives_name}-${minecraft_version}"
+}
+
+sourcesJar {
+    archiveVersion = "v${mod_version}"
+    archiveBaseName = project.ext.fileName
+}
+
+tasks.named("shadowJar") {
+    enabled = false
+}
+
+dependencies {
+    implementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    api("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+        exclude(group: "net.fabricmc", module: "fabric-loader")
+    }
+}
+
+loom {
+    mixin {
+        defaultRefmapName = "mixins.${archives_name}.refmap.json"
+    }
+}

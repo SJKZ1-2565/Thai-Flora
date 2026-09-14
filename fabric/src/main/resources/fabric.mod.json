@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "thai_flora",
+  "version": "${version}",
+  "name": "Thai Flora",
+  "description": "Adds various Thai flora to the game!",
+  "authors": [
+    "SJKZ1"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "MIT",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.sjkz1.thai_flora.fabric.ThaiFloraFabric"
+    ],
+    "client": [
+      "com.sjkz1.thai_flora.fabric.client.ThaiFloraFabricClient"
+    ],
+    "modmenu": [
+      "com.sjkz1.thai_flora.fabric.modmenu.ThaiFloraModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "thai_flora.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "fabric-api": ">=0.158",
+    "cloth-config": ">=26.2",
+    "minecraft": "~26.2"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
