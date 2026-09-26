@@ -1,12 +1,9 @@
 {
   "required": true,
-  "package": "com.sjkz1.showkeybinds.mixin",
+  "package": "com.sjkz1.mixin",
   "compatibilityLevel": "JAVA_25",
-  "minVersion": "0.8.7",
+  "minVersion": "0.8",
   "client": [
-    "MixinAbstractContainerScreen",
-    "MixinGui",
-    "MixinGuiGraphics"
   ],
   "mixins": [
   ],

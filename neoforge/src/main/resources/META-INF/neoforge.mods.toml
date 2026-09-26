@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[2,)"
+loaderVersion = "[1,)"
 #issueTrackerURL = ""
 license = "MIT"
 
@@ -7,16 +7,14 @@ license = "MIT"
 modId = "thai_flora"
 version = "${version}"
 displayName = "Thai Flora"
-iconFile = "logo.png"
 authors = "SJKZ1"
-description = '''
-Show key binding on Hotbar and Inventory!
-'''
+description = ''''''
+#logoFile = "logo.png"
 
 [[dependencies.thai_flora]]
 modId = "neoforge"
 type = "required"
-versionRange = "[26.2,)"
+versionRange = "[26.2.0,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -25,6 +23,13 @@ modId = "minecraft"
 type = "required"
 versionRange = "[26.2,)"
 ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.thai_flora]]
+modId = "architectury"
+type = "required"
+versionRange = "[21.0.7,)"
+ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]
