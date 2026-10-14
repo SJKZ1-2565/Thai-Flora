@@ -12,6 +12,10 @@ architectury {
 allprojects {
     group = rootProject.maven_group
     version = rootProject.mod_version
+    repositories {
+        maven { url "https://maven.shedaniel.me/" }
+        maven { url "https://maven.terraformersmc.com/releases/" }
+    }
 }
 
 subprojects {

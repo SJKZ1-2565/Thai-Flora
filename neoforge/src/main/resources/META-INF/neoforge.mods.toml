@@ -18,6 +18,11 @@ versionRange = "[26.2.0,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[mixins]]
+config = "thai_flora_neoforge.mixins.json"
+[[mixins]]
+config = "thai_flora_neoforge.mixins.json"
+
 [[dependencies.thai_flora]]
 modId = "minecraft"
 type = "required"

@@ -16,14 +16,21 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.sjkz1.fabric.ExampleModFabric"
+      "com.sjkz1.thai_flora.fabric.ThaiFloraFabric"
     ],
     "client": [
-      "com.sjkz1.fabric.client.ExampleModFabricClient"
+      "com.sjkz1.thai_flora.fabric.client.ThaiFloraFabricClient"
+    ],
+    "fabric-datagen": [
+      "com.sjkz1.thai_flora.fabric.datagen.ThaiFloraDataGenerator"
+    ],
+    "modmenu": [
+      "com.sjkz1.thai_flora.fabric.modmenu.ThaiFloraModMenuIntegration"
     ]
   },
   "mixins": [
-    "thai_flora.mixins.json"
+    "thai_flora.mixins.json",
+    "thai_flora_fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.19.5",

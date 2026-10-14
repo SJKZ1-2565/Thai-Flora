@@ -1,6 +1,8 @@
 package com.sjkz1.thai_flora;
 
 import com.sjkz1.thai_flora.config.ThaiFloraConfig;
+import com.sjkz1.thai_flora.registry.TFBlocks;
+import com.sjkz1.thai_flora.registry.TFItems;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import org.slf4j.Logger;
@@ -21,5 +23,7 @@ public final class ThaiFlora
 
     public static void init()
     {
+        TFBlocks.register();
+        TFItems.register();
     }
 }
