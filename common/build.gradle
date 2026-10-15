@@ -5,7 +5,7 @@ architectury {
 sourceSets {
     main {
         resources {
-            srcDir 'src/main/generated'
+            srcDir "src/generated/resources"
         }
     }
 }

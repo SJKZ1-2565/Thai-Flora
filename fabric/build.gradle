@@ -45,7 +45,7 @@ dependencies {
 fabricApi {
     configureDataGeneration() {
         client = true
-        outputDirectory = file("src/generated/resources")
+        outputDirectory = project(":common").file("src/generated/resources")
     }
 }
 

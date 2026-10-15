@@ -11,33 +11,25 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class TFBlocks
 {
-    public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(
-                    ThaiFlora.MOD_ID,
-                    Registries.BLOCK
-            );
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ThaiFlora.MOD_ID, Registries.BLOCK);
 
     public static final RegistrySupplier<Block> LEMONGRASS_BLOCK =
-            BLOCKS.register("lemongrass_block", () -> {
+            BLOCKS.register("lemongrass_block", () ->
+            {
                 ResourceKey<Block> key = ResourceKey.create(
                         Registries.BLOCK,
-                        Identifier.fromNamespaceAndPath(
-                                ThaiFlora.MOD_ID,
-                                "lemongrass_block"
-                        )
+                        Identifier.fromNamespaceAndPath(ThaiFlora.MOD_ID, "lemongrass_block")
                 );
-
-                return new Block(
-                        BlockBehaviour.Properties.of()
-                                .strength(1.0F)
-                                .setId(key)
+                return new Block(BlockBehaviour.Properties.of().strength(1.0F).setId(key)
                 );
             });
 
-    private TFBlocks() {
+    private TFBlocks()
+    {
     }
 
-    public static void register() {
+    public static void register()
+    {
         BLOCKS.register();
     }
 }
